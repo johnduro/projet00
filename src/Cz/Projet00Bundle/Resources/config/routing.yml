@@ -1,0 +1,3 @@
+cz_projet00_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: CzProjet00Bundle:Default:index }
