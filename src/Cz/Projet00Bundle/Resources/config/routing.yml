@@ -1,3 +1,15 @@
 cz_projet00_homepage:
     path:     /hello/{name}
     defaults: { _controller: CzProjet00Bundle:Default:index }
+
+cz_projet00_index:
+    path:     /
+    defaults: { _controller: CzProjet00Bundle:Home:index }
+
+cz_projet00_download:
+    path:     /download
+    defaults: { _controller: CzProjet00Bundle:Home:download }
+
+cz_projet00_start_download:
+    path:     /startdownload
+    defaults: { _controller: CzProjet00Bundle:Home:startDownload }

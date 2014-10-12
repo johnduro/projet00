@@ -1,3 +1,7 @@
+cz_utilisateur:
+    resource: "@CzUtilisateurBundle/Resources/config/routing.yml"
+    prefix:   /
+
 cz_projet00:
     resource: "@CzProjet00Bundle/Resources/config/routing.yml"
     prefix:   /

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{% block title %}Projet00{% endblock %}</title>
+
+      <!-- stylesheets -->
+      {% stylesheets "@CzProjet00Bundle/Resources/public/ext/bootstrap/css/bootstrap-theme.min.css"
+                     "@CzProjet00Bundle/Resources/public/ext/bootstrap/css/bootstrap.min.css"
+
+                     filter="cssrewrite"
+                     output="assets/css/combined.css"
+      %}
+         <link rel="stylesheet" href="{{ asset_url }}" />
+      {% endstylesheets %}
+
+      <!-- javascripts -->
+		{% javascripts "@CzProjet00Bundle/Resources/public/ext/bootstrap/js/bootstrap.min.js"
+
+                     output="assets/js/combined.js"
+		%}
+			<script src="{{ asset_url }}" type="text/javascript"></script>
+		{% endjavascripts %}
+
+	</head>
+	<body>
+		{% block navHeader %}
+		<div class="row">
+			<nav class="navbar navbar-default navbar-static-top navbar-inverse" role="navigation">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="{{ path('cz_projet00_index') }}">Home</a>
+					<ul class="nav navbar-nav">
+						<li><a href="{{ path('cz_projet00_download') }}">Télécharger</a></li>
+						<li><a href="#">Parcourir les films</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		{% endblock %}
+		<div class="row">
+			{% block body %}
+			{% endblock %}
+		</div>
+	</body>
+</html>
