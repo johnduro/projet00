@@ -5,6 +5,8 @@ namespace Cz\Projet00Bundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Cz\UtilisateurBundle\Entity\User;
+
 /**
  * @ORM\Table(name="downloadedFiles")
  * @ORM\Entity
@@ -27,16 +29,16 @@ class filmDownloader
     protected $name;
 
     /**
-     * @var boolean
+     * @var integer
      *
-     * @ORM\Column(name="isDownloaded", type="boolean", nullable=false)
+     * @ORM\Column(name="downloadedState", type="integer", nullable=true)
      */
-    protected $downloaded;
+    protected $downloadedState;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dowloadDate", type="datetime", nullable=false)
+     * @ORM\Column(name="dowloadDate", type="datetime", nullable=true)
      */
     protected $downloadDate;
 
@@ -51,7 +53,6 @@ class filmDownloader
      * @var string
      *
      * @ORM\Column(name="path", type="string", length=255, nullable=false)
-     * @Assert\NotBlank
      */
     protected $path;
 
@@ -61,6 +62,12 @@ class filmDownloader
      * @ORM\Column(name="comment", type="text")
      */
     protected $comment;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Cz\UtilisateurBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    protected $user;
 
     /**
      * @Assert\File(maxSize="6000000")
@@ -87,14 +94,14 @@ class filmDownloader
         $this->name = $name;
     }
 
-    public function isDownloaded()
+    public function getDownloadedState()
     {
-        return $this->downloaded;
+        return $this->downloadedState;
     }
 
-    public function setDowloaded($downloaded)
+    public function setDowloadedState($downloaded)
     {
-        $this->downloaded = $downloaded;
+        $this->downloadedState = $downloaded;
     }
 
     public function getDownloadDate()
@@ -139,7 +146,7 @@ class filmDownloader
 
     protected function getUploadRootDir()
     {
-        return __DIR__.'../Resources/public/'.$this->getUploadDir();
+        return __DIR__.'/../Resources/public/'.$this->getUploadDir();
     }
 
     protected function getUploadDir()
@@ -187,6 +194,16 @@ class filmDownloader
     public function setComment($comment)
     {
         $this->comment = $comment;
+    }
+
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user)
+    {
+        $this->user = $user;
     }
 }
 
